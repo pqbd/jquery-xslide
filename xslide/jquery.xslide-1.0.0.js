@@ -47,18 +47,14 @@
     for ( var i = 0; i < this.m_imgCollection.length; i++)
     {
       var item = $( this.m_imgCollection[ i]);
-
       var nScaleX = this.m_options.nWidth / item.width();
       var nScaleY = this.m_options.nHeight / item.height();
-
       if ( nScaleX > nScaleY)
         var nScale = nScaleY;
       else
         var nScale = nScaleX;
-
       item.height( item.height() * nScale);
       item.width( item.width() * nScale);
-
       var nMargin = ( this.m_options.nHeight - item.height()) / 2;
       item.css({ 'padding-top' : nMargin, 'padding-bottom' : nMargin})
     }
