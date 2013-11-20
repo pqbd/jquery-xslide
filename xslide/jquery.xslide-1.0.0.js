@@ -47,10 +47,17 @@
     for ( var i = 0; i < this.m_imgCollection.length; i++)
     {
       var item = $( this.m_imgCollection[ i]);
-      if( item.width() > item.height())
-        item.width( this.m_options.nWidth);
+
+      if ( item.width() > item.height())
+        var nScale = item.height() / item.width();
       else
-        item.height( this.m_options.nHeight);
+        var nScale = item.width() / item.height();
+
+      item.height( this.m_options.nHeight * nScale);
+      item.width( this.m_options.nWidth * nScale);
+
+      var nMargin = ( this.m_options.nHeight - item.height()) / 2;
+      item.css({ 'padding-top' : nMargin, 'padding-bottom' : nMargin})
     }
     this.m_nPosition = 0;
     this.m_nCount = this.m_imgCollection.length;
