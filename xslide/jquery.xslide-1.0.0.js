@@ -48,13 +48,16 @@
     {
       var item = $( this.m_imgCollection[ i]);
 
-      if ( item.width() > item.height())
-        var nScale = item.height() / item.width();
-      else
-        var nScale = item.width() / item.height();
+      var nScaleX = this.m_options.nWidth / item.width();
+      var nScaleY = this.m_options.nHeight / item.height();
 
-      item.height( this.m_options.nHeight * nScale);
-      item.width( this.m_options.nWidth * nScale);
+      if ( nScaleX > nScaleY)
+        var nScale = nScaleY;
+      else
+        var nScale = nScaleX;
+
+      item.height( item.height() * nScale);
+      item.width( item.width() * nScale);
 
       var nMargin = ( this.m_options.nHeight - item.height()) / 2;
       item.css({ 'padding-top' : nMargin, 'padding-bottom' : nMargin})
