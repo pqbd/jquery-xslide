@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+<title>Example 001</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=320"/>
+<link rel="shortcut icon" href="images/alx.ico"/>
+<link type="text/css" rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" src="../common/jquery/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../../xslide/jquery.xslide-1.0.0.js"></script>
+
+<script type="text/javascript">
+$( document).ready
+(
+  function() 
+  {
+    $( '#xslide_1').parent().addClass( 'active');
+    $( '#xslide_1').xSlide({ 'bVertical': true
+                          , 'bStart': true
+                          , 'OnStop' : function()
+                            {
+                              $( '#xslide_1_play').removeClass( 'start');
+                              $( '#xslide_1_play').addClass( 'stop');
+                            }
+                          , 'OnStart' : function()
+                            {
+                              $( '#xslide_1_play').removeClass( 'stop');
+                              $( '#xslide_1_play').addClass( 'start');
+                            }
+                          , 'starter' : $( '#xslide_1_play')
+                          });
+  }
+  
+);
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+
+<div class="screenshots">
+  <div class="ctrl">
+    <div id="xslide_1_fullsize"></div>
+    <div id="xslide_1_play" class="btn"></div>
+  </div>
+  <div class="xslide" id="xslide_1">
+    <div>
+      <img src="images/screen_001.jpg" width="1280" height="1024" />
+      <img src="images/screen_002.jpg" width="1280" height="1024" />
+      <img src="images/screen_003.jpg" width="1280" height="1024" />
+      <img src="images/screen_004.jpg" width="1280" height="1024" />
+      <img src="images/screen_005.jpg" width="1280" height="1024" />
+      <img src="images/screen_006.jpg" width="1280" height="1024" />
+      <img src="images/screen_007.jpg" width="1280" height="1024" />
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

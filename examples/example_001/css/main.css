@@ -1,0 +1,91 @@
+/*  Init */
+html
+, body
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;  
+}
+a
+{
+  color: #0000ff;
+}
+a:hover
+{
+  color: #ff0000;
+}
+
+/* /Init */
+
+/*  page */
+div.wrapper
+{
+}
+
+div.screenshots
+{
+  width: 514px;
+  height: 348px;  
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url( '../images/screenshot_bg.png');
+  background-repeat: no-repeat;
+  padding-top: 13px;
+  padding-left: 14px;
+  position: relative;
+}
+div.screenshots div.xslide
+{
+  width: 480px;
+  height: 320px;
+  overflow: auto;  
+}
+div.screenshots.active:hover div.ctrl
+{
+  display: block;
+}
+div.screenshots div.ctrl
+{
+  display: none;
+  background-image: url( '../images/transparent_bg.png');
+  background-repeat: repeat;
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  width: 480px;
+  height: 320px;
+  z-index: 5;
+}
+div.screenshots div.xslide img
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+div.screenshots div.ctrl div.btn
+{
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 22%;
+  cursor: pointer;
+}
+div.screenshots div.ctrl div.btn.start
+{
+  background-image: url( '../images/screenshot_stop.png');
+}
+div.screenshots div.ctrl div.btn.start:hover
+{
+  background-image: url( '../images/screenshot_stop_on.png');
+}
+div.screenshots div.ctrl div.btn.stop
+{
+  background-image: url( '../images/screenshot_play.png');
+}
+div.screenshots div.ctrl div.btn.stop:hover
+{
+  background-image: url( '../images/screenshot_play_on.png');
+}
+/* /page */
