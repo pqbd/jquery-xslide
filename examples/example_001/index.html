@@ -16,17 +16,9 @@ $( document).ready
     $( '#xslide_1').parent().addClass( 'active');
     $( '#xslide_1').xSlide({ 'bVertical': true
                           , 'bStart': true
-                          , 'OnStop' : function()
-                            {
-                              $( '#xslide_1_play').removeClass( 'start');
-                              $( '#xslide_1_play').addClass( 'stop');
-                            }
-                          , 'OnStart' : function()
-                            {
-                              $( '#xslide_1_play').removeClass( 'stop');
-                              $( '#xslide_1_play').addClass( 'start');
-                            }
                           , 'starter' : $( '#xslide_1_play')
+                          , 'comment' : $( '#xslide_1_comment')
+                          , 'progress': $( '#xslide_1_progress')
                           });
   }
   
@@ -41,16 +33,20 @@ $( document).ready
   <div class="ctrl">
     <div id="xslide_1_fullsize"></div>
     <div id="xslide_1_play" class="btn"></div>
+    <div class="bottom_bar">
+      <div id="xslide_1_comment" class="comment"></div>
+      <div id="xslide_1_progress" class="progress"></div>
+    </div>    
   </div>
   <div class="xslide" id="xslide_1">
     <div>
-      <img src="images/screen_001.jpg" width="1280" height="1024" />
-      <img src="images/screen_002.jpg" width="1280" height="1024" />
-      <img src="images/screen_003.jpg" width="1280" height="1024" />
-      <img src="images/screen_004.jpg" width="1280" height="1024" />
-      <img src="images/screen_005.jpg" width="1280" height="1024" />
-      <img src="images/screen_006.jpg" width="1280" height="1024" />
-      <img src="images/screen_007.jpg" width="1280" height="1024" />
+      <img src="images/screen_001.jpg" alt="The Tesla coil wireless transmitter &lt;a href='http://en.wikipedia.org/wiki/Tesla_coil'&gt;[see on Wiki]&lt;/a&gt;" width="1280" height="1024" />
+      <img src="images/screen_002.jpg" alt="A Tesla coil is an electrical resonant transformer circuit invented by Nikola Tesla around 1891." width="1280" height="1024" />
+      <img src="images/screen_003.jpg" alt="It is used to produce high-voltage, low-current, high frequency alternating-current electricity." width="1280" height="1024" />
+      <img src="images/screen_004.jpg" alt="Tesla coils can produce higher voltages than other artificial sources of high-voltage discharges, electrostatic machines. " width="1280" height="1024" />
+      <img src="images/screen_005.jpg" alt="Tesla experimented with a number of different configurations consisting of two, or sometimes three, coupled resonant electric circuits." width="1280" height="1024" />
+      <img src="images/screen_006.jpg" alt="Tesla coil circuits were used commercially in sparkgap radio transmitters for wireless telegraphy until the 1920s, and in medical equipment such as electrotherapy and violet ray devices." width="1280" height="1024" />
+      <img src="images/screen_007.jpg" alt="Today their main use is for entertainment and educational displays, although small coils are used as leak detectors for high vacuum systems." width="1280" height="1024" />
     </div>
   </div>
 </div>

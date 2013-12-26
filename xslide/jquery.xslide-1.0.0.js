@@ -24,9 +24,27 @@
     {
       item.animate( {opacity: 0}, 300);
     }
+    function OnStart()
+    {
+      if ( self.m_options.starter)
+      {
+        self.m_options.starter.removeClass( 'stop');
+        self.m_options.starter.addClass( 'start');
+      }
+    }
+    function OnStop()
+    {
+      if ( self.m_options.starter)
+      {
+        self.m_options.starter.removeClass( 'start');
+        self.m_options.starter.addClass( 'stop');
+      }
+    }
+    
+    var self = this;
 
-    this.m_options = $.extend({ 'nWidth' : this.width()
-                              , 'nHeight' : this.height()
+    self.m_options = $.extend({ 'nWidth' : self.width()
+                              , 'nHeight' : self.height()
                               , 'bStart' : false
                               , 'nLoopSpeed' : 5000                              
                               , 'nSpeed': 300
@@ -35,46 +53,53 @@
                               , 'OnItemShow' : OnItemShow
                               , 'OnItemHide' : OnItemHide
                               , 'starter' : false
-                              , 'OnStart' : false
-                              , 'OnStop' : false                              
+                              , 'OnStart' : OnStart
+                              , 'OnStop' : OnStop
+                              , 'comment' : false
                               }
                               , ( options || {})
                               );
+    
 
-    this.css( {'overflow' : 'hidden'});
-    this.m_imgContainer = this.children( 'div');
-    this.m_imgCollection = this.m_imgContainer.children( 'img');
-    for ( var i = 0; i < this.m_imgCollection.length; i++)
+    self.css( {'overflow' : 'hidden'});
+    self.m_imgContainer = self.children( 'div');
+    self.m_imgCollection = self.m_imgContainer.children( 'img');
+    for ( var i = 0; i < self.m_imgCollection.length; i++)
     {
-      var item = $( this.m_imgCollection[ i]);
-      var nScaleX = this.m_options.nWidth / item.width();
-      var nScaleY = this.m_options.nHeight / item.height();
+      var item = $( self.m_imgCollection[ i]);
+      var nScaleX = self.m_options.nWidth / item.width();
+      var nScaleY = self.m_options.nHeight / item.height();
       if ( nScaleX > nScaleY)
         var nScale = nScaleY;
       else
         var nScale = nScaleX;
       item.height( item.height() * nScale);
       item.width( item.width() * nScale);
-      var nMargin = ( this.m_options.nHeight - item.height()) / 2;
+      var nMargin = ( self.m_options.nHeight - item.height()) / 2;
       item.css({ 'padding-top' : nMargin, 'padding-bottom' : nMargin})
     }
-    this.m_nPosition = 0;
-    this.m_nCount = this.m_imgCollection.length;
-    this.m_timer = null;
-    var self = this;
+    self.m_nPosition = 0;
+    self.m_nCount = self.m_imgCollection.length;
+    self.m_timer = null;
 
-    this.GoTo = function( nPos, OnEnd)
+    self.GoTo = function( nPos, OnEnd)
     {
-      if ( nPos >= this.m_nCount)
+      if ( nPos >= self.m_nCount)
         nPos = 0;
       if ( self.m_options.bVertical)
         var css = {marginTop: -nPos * self.m_options.nHeight};
       else
         var css = {marginLeft: -nPos * self.m_options.nWidth};
 
-      this.m_options.OnItemHide.call( self, $( self.m_imgCollection.get( self.m_nPosition)), self.m_nPosition);
-      this.m_nPosition = nPos;      
-      this.m_imgContainer.animate( css
+      self.m_options.OnItemHide.call( self, $( self.m_imgCollection.get( self.m_nPosition)), self.m_nPosition);
+      self.m_nPosition = nPos;
+
+      if ( self.m_options.comment)
+        self.m_options.comment.html( $( self.m_imgCollection[ self.m_nPosition]).attr( 'alt'));
+      if ( self.m_options.progress)
+        self.m_options.progress.html( '<div ></div>');
+
+      self.m_imgContainer.animate( css
                         , self.m_options.nSpeed
                         , self.m_options.Easing
                         , function()
@@ -87,19 +112,19 @@
       return self;
     }
 
-    this.GoToStart = function( OnEnd)
+    self.GoToStart = function( OnEnd)
     {
       return self.GoTo( 0, OnEnd);
     }
-    this.GoToEnd = function( OnEnd)
+    self.GoToEnd = function( OnEnd)
     {
-      return self.GoTo(( this.m_nCount - 1), OnEnd);
+      return self.GoTo(( self.m_nCount - 1), OnEnd);
     }
-    this.GoToNext = function( OnEnd)
+    self.GoToNext = function( OnEnd)
     {
-      return self.GoTo(( this.m_nPosition + 1), OnEnd);
+      return self.GoTo(( self.m_nPosition + 1), OnEnd);
     }
-    this.Stop = function()
+    self.Stop = function()
     {
       self.m_options.bStart = false;
       if ( self.m_options.OnStop)
@@ -119,7 +144,7 @@
         self.GoToNext( function(){ self.m_timer ? false : self.m_timer = setTimeout( Loop, self.m_options.nLoopSpeed);});
       }
     }
-    this.Start = function()
+    self.Start = function()
     {
       self.m_options.bStart = true;
       Loop();
@@ -131,12 +156,18 @@
         self.m_options.starter.bind( 'click', self.Stop);
       }
     }
+    
+    self.GoTo( -1);
 
     if ( self.m_options.bStart)
-      this.Start();
+      self.Start();
     else
-      this.Stop();
+      self.Stop();
 
-    return this;
-  }  
+    return self;
+  }
+
+  function OnProgress()
+  {    
+  }
 }( jQuery));
