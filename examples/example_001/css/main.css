@@ -120,4 +120,37 @@ div.screenshots div.ctrl div.bottom_bar div.progress
   margin-right: 15px;
   display: none;
 }
+
+div.top_bar_left
+{
+  float: left;
+}
+div.top_bar_right
+{
+  float: right;
+}
+div.top_bar_left div.reset
+{
+  background-image: url( '../images/screenshot_stop.png');
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+div.top_bar_left div.reset:hover
+{
+  background-image: url( '../images/screenshot_stop.png');
+}
+div.top_bar_right div.fullsize
+{
+  background-image: url( '../images/screenshot_stop.png');
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+div.top_bar_right div.fullsize:hover
+{
+  background-image: url( '../images/screenshot_stop.png');
+}
 /* /page */

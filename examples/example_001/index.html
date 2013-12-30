@@ -14,11 +14,14 @@ $( document).ready
   function() 
   {
     $( '#xslide_1').parent().addClass( 'active');
-    $( '#xslide_1').xSlide({ 'bVertical': true
-                          , 'bStart': true
+    $( '#xslide_1').xSlide({ 'bVertical' : true
+                          , 'bStart' : true
                           , 'starter' : $( '#xslide_1_play')
                           , 'comment' : $( '#xslide_1_comment')
-                          , 'progress': $( '#xslide_1_progress')
+                          , 'progress' : $( '#xslide_1_progress')
+                          , 'tostart' : $( '#xslide_1_tostart')
+                          , 'fullsize' : $( '#xslide_1_fullsize')
+                          , 'fullsizetarget' : $( '#xslide_1_fullsizetarget')
                           });
   }
   
@@ -31,7 +34,8 @@ $( document).ready
 
 <div class="screenshots">
   <div class="ctrl">
-    <div id="xslide_1_fullsize"></div>
+    <div class="top_bar_left"><div id="xslide_1_tostart" class="reset"></div></div>
+    <div class="top_bar_right"><div id="xslide_1_fullsize" class="fullsize"></div></div>
     <div id="xslide_1_play" class="btn"></div>
     <div class="bottom_bar">
       <div id="xslide_1_comment" class="comment"></div>
@@ -50,6 +54,8 @@ $( document).ready
     </div>
   </div>
 </div>
+
+<div><img id="xslide_1_fullsizetarget" src="" alt="" /></div>
 
 </body>
 

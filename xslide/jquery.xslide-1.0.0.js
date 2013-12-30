@@ -47,8 +47,8 @@
                               , 'nHeight' : self.height()
                               , 'bStart' : false
                               , 'nLoopSpeed' : 5000                              
-                              , 'nSpeed': 300
-                              , 'Easing': null
+                              , 'nSpeed' : 300
+                              , 'Easing' : null
                               , 'bVertical' : false
                               , 'OnItemShow' : OnItemShow
                               , 'OnItemHide' : OnItemHide
@@ -56,6 +56,9 @@
                               , 'OnStart' : OnStart
                               , 'OnStop' : OnStop
                               , 'comment' : false
+                              , 'tostart' : false
+                              , 'toend' : false
+                              , 'fullsize' : false
                               }
                               , ( options || {})
                               );
@@ -80,7 +83,7 @@
     }
     self.m_nPosition = 0;
     self.m_nCount = self.m_imgCollection.length;
-    self.m_timer = null;
+    self.m_timer = null;    
 
     self.GoTo = function( nPos, OnEnd)
     {
@@ -105,6 +108,7 @@
                         , function()
                           {
                             if ( OnEnd)
+                            if ( OnEnd.call)
                               OnEnd.call( self);
                           }
                         );
@@ -156,8 +160,38 @@
         self.m_options.starter.bind( 'click', self.Stop);
       }
     }
+    function OnFullSize()
+    {
+      if ( self.m_options.bStart)
+        self.Stop();
+      var image = $( self.m_imgCollection.get( self.m_nPosition));
+      var css = { width: '100%'
+                , height: '100%'
+                };
+      
+      self.m_options.fullsizetarget.attr( 'src', image.attr( 'src'));
+      self.m_options.fullsizetarget.attr( 'alt', image.attr( 'alt'));
+      self.m_options.fullsizetarget.removeAttr( 'width')
+                                   .removeAttr( 'height')
+                                   .animate( css
+                                          , 300
+                                          , null
+                                          , function()
+                                            {
+                                              // none
+                                            }
+                                          );
+    }
     
     self.GoTo( -1);
+
+    if ( self.m_options.tostart)
+      self.m_options.tostart.bind( 'click', self.GoToStart);
+    if ( self.m_options.toend)
+      self.m_options.toend.bind( 'click', self.GoToEnd);
+    if ( self.m_options.fullsize)
+    if ( self.m_options.fullsizetarget)
+      self.m_options.fullsize.bind( 'click', OnFullSize);    
 
     if ( self.m_options.bStart)
       self.Start();
@@ -165,9 +199,5 @@
       self.Stop();
 
     return self;
-  }
-
-  function OnProgress()
-  {    
   }
 }( jQuery));
