@@ -131,7 +131,7 @@ div.top_bar_right
 }
 div.top_bar_left div.reset
 {
-  background-image: url( '../images/screenshot_stop.png');
+  background-image: url( '../images/screenshot_tostart.png');
   background-repeat: no-repeat;
   width: 32px;
   height: 32px;
@@ -139,11 +139,11 @@ div.top_bar_left div.reset
 }
 div.top_bar_left div.reset:hover
 {
-  background-image: url( '../images/screenshot_stop.png');
+  background-image: url( '../images/screenshot_tostart_on.png');
 }
 div.top_bar_right div.fullsize
 {
-  background-image: url( '../images/screenshot_stop.png');
+  background-image: url( '../images/screenshot_fullsize.png');
   background-repeat: no-repeat;
   width: 32px;
   height: 32px;
@@ -151,6 +151,6 @@ div.top_bar_right div.fullsize
 }
 div.top_bar_right div.fullsize:hover
 {
-  background-image: url( '../images/screenshot_stop.png');
+  background-image: url( '../images/screenshot_fullsize_on.png');
 }
 /* /page */
